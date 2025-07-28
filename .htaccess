@@ -1,15 +1,22 @@
-# Enable the Rewrite Engine
 RewriteEngine On
+RewriteBase /web/yooma/
 
-# Rewrite /home to index.php
+
+# Pretty URLs
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^home$ index.php [L]
+RewriteRule ^body-massage-calicut$ about.php [L]
+RewriteRule ^massage-service-in-calicut$ services.php [L]
 
-# Rewrite URLs to remove .php extension
+# Redirects
+RewriteRule ^services$ massage-service-in-calicut [R=301,L]
+RewriteRule ^about$ body-massage-calicut [R=301,L]
+
+# Remove .php extension
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^([^/]+)$ $1.php [L]
 
-# Rewrite blog URLs
+# Blog URLs
 RewriteRule ^blog/([^/]+)/?$ blog-view.php?url=$1 [L,QSA]

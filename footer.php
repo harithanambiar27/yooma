@@ -4,9 +4,8 @@
         <div class="col-md-3">
           <div class="ft_adres">
             <h4>address</h4>
-            <p><i class="fa-solid fa-location-dot"></i>Oppopsite Hospital
-              Kuthiravattom
-              Calicut
+            <p><i class="fa-solid fa-location-dot"></i>Opposite Government Mental Health Hospital, Kuthiravattam, Calicut
+
 
             </p>
             <p><i class="fa-solid fa-phone"></i>7356940742</p>
@@ -17,7 +16,7 @@
         <div class="col-md-3">
           <h4> quick links</h4>
           <ul>
-            <li> <a href="index"><i class="fa-solid fa-angle-right"></i>home</a></li>
+            <li> <a href="https://yoomawellnessspa.com/"><i class="fa-solid fa-angle-right"></i>home</a></li>
             <li> <a href="about"><i class="fa-solid fa-angle-right"></i>about us</a></li>
 
             <li> <a href="services"><i class="fa-solid fa-angle-right"></i>services</a></li>
@@ -98,6 +97,141 @@
 
   <!-- AOS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    function updateMeta(title, description) {
+      document.title = title;
+
+      let metaDesc = document.querySelector("meta[name='description']");
+      if (!metaDesc) {
+        metaDesc = document.createElement('meta');
+        metaDesc.name = "description";
+        document.head.appendChild(metaDesc);
+      }
+      metaDesc.setAttribute("content", description);
+    }
+
+    const path = window.location.pathname;
+
+    switch (path) {
+      case '/about':
+      case '/about-us':
+        updateMeta(
+          'Body Massage Calicut  | Full Body Massage in Calicut',
+          'Enjoy Yooma’s premium Body Massage Calicut services. Our expert Full Body Massage in Calicut helps relieve stress, improve circulation, and boost energy'
+        );
+        break;
+
+      case '/services':
+      case '/our-services':
+        updateMeta(
+          'Massage Service in Calicut  | Body Massage Centre in Calicut',
+          'Indulge in ultimate comfort at Yooma with professional Massage Service in Calicut. Our Body Massage Centre in Calicut ensures deep healing and relaxation.'
+        );
+        break;
+
+
+      default:
+        updateMeta(
+          'Massage Spa in Calicut  | Calicut Spa Massage Centre',
+          'Yooma is the best Massage Spa in Calicut, offering healing therapies. Choose our Calicut Spa Massage Centre for unmatched relaxation and stress-free living.'
+        );
+    }
+  });
+</script>
+<!-- canonical tag -->
+ <script>
+(function() {
+  // Get current URL without query parameters and hash
+  const url = window.location.origin + window.location.pathname;
+
+  // Create canonical link element
+  const link = document.createElement('link');
+  link.rel = 'canonical';
+  link.href = url;
+
+  // Check if canonical already exists
+  const existing = document.querySelector("link[rel='canonical']");
+  if (existing) {
+    existing.href = url;
+  } else {
+    document.head.appendChild(link);
+  }
+})();
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const path = window.location.pathname;
+    const lastSegment = path.substring(path.lastIndexOf("/") + 1).toLowerCase();
+
+    let h1Text = "";
+    let h2Text = "";
+
+    if (lastSegment === "body-massage-calicut") {
+        h1Text = "Body Massage Calicut";
+        h2Text = "Full Body Massage in Calicut";
+    } else if
+     (lastSegment === "massage-service-in-calicut") {
+        h1Text = "Massage Service in Calicut";
+        h2Text = "Body Massage Centre in Calicut";
+    } else {
+        h1Text = "Massage Spa in Calicut";
+        h2Text = "Calicut Spa Massage Centre";
+    }
+
+    // Replace existing h1 with new h2 (preserving attributes)
+    const siteTitle = document.querySelector("h1");
+    if (siteTitle) {
+        const newH2 = document.createElement("h2");
+        newH2.innerHTML = siteTitle.innerHTML;
+        for (let attr of siteTitle.attributes) {
+            newH2.setAttribute(attr.name, attr.name);
+        }
+        siteTitle.replaceWith(newH2);
+    }
+
+    // Create hidden h1 and h2 elements
+    const newH1 = document.createElement("h1");
+    newH1.textContent = h1Text;
+    newH1.style.display = "none";
+
+    const additionalH2 = document.createElement("h2");
+    additionalH2.textContent = h2Text;
+    additionalH2.style.display = "none";
+
+    const footer = document.querySelector("footer");
+    if (footer) {
+        footer.insertAdjacentElement("afterend", additionalH2);
+        footer.insertAdjacentElement("afterend", newH1);
+    }
+
+    // Update image alt attributes and src with dynamic file names
+    const images = document.querySelectorAll("img");
+    const altTags = [h1Text, h2Text];
+
+    images.forEach((img, index) => {
+        const originalSrc = img.getAttribute("src");
+
+        if (!originalSrc || originalSrc.includes("image-loader.php")) return;
+
+        const relativePathMatch = originalSrc.split("assets/img/")[1];
+        if (!relativePathMatch) return;
+
+        const cleanedPath = encodeURIComponent(relativePathMatch.trim());
+        const downloadName = (index % 2 === 0 ? h1Text : h2Text)
+            .trim()
+            .replace(/\s+/g, '-')
+            .replace(/[^\w\-]/g, '') + ".png";
+
+        img.setAttribute("alt", altTags[index % altTags.length]);
+        img.setAttribute("src", `image-loader.php?path=${cleanedPath}&name=${downloadName}`);
+    });
+});
+</script>
+
+
 
   <script>
     AOS.init();
