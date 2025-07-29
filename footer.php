@@ -116,7 +116,7 @@
 
     switch (path) {
       case '/about':
-      case '/about-us':
+      case '/body-massage-calicut':
         updateMeta(
           'Body Massage Calicut  | Full Body Massage in Calicut',
           'Enjoy Yooma’s premium Body Massage Calicut services. Our expert Full Body Massage in Calicut helps relieve stress, improve circulation, and boost energy'
@@ -124,7 +124,7 @@
         break;
 
       case '/services':
-      case '/our-services':
+      case '/massage-service-in-calicut':
         updateMeta(
           'Massage Service in Calicut  | Body Massage Centre in Calicut',
           'Indulge in ultimate comfort at Yooma with professional Massage Service in Calicut. Our Body Massage Centre in Calicut ensures deep healing and relaxation.'
